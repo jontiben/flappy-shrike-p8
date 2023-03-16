@@ -6,7 +6,7 @@ __lua__
 -- constants
 x = 0  y = 64
 dx = 0.5  dy = 0
-jump_strength = 4.5
+flap_strength = 4.5
 gravity_strength = 0.25
 ceil_vel_bleed = 6 -- 1/x * dy
 
@@ -27,9 +27,9 @@ sprite_size = 8 -- size in pixels
 palt(14, true)
 palt(0, false)
 
-function jump()
+function flap()
 	if accepting_input then
-		dy += jump_strength
+		dy += flap_strength
 		accepting_input = false
 	end
 end
@@ -39,7 +39,7 @@ function get_inputs()
 		if (not btn(❎)) and (not btn(🅾️)) then
 			accepting_input = true
 		end
-	 if (btn(❎)) then jump() end
+	 if (btn(❎)) then flap() end
 	 if (btn(🅾️)) then new_bug() end
 	else
 		if (btn(❎)) then scene = 'game' end
@@ -183,7 +183,7 @@ function _draw()
 		print('time: '..flr(time()), 4, 12, 6)
 	
 		-- instructions
-		print('x to jump, z to spawn bug', 4, 118, 6)
+		print('x to flap, z to spawn bug', 4, 118, 6)
 	else
 		-- start screen
 		cls(s)
